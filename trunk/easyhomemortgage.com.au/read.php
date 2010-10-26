@@ -1,3 +1,19 @@
+<?php
+	$fn=$_GET["src"];
+	if(strpos($fn, ".php"))
+		$fn="";
+	$file=fopen($fn,"r+");
+	$picture=fgets($file);
+	$title=fgets($file);
+	$linespacing=fgets($file);
+	$content="";
+	while(!feof($file))
+  	{
+  		 $content=$content."<p>".fgets($file)."</p>";
+  	}
+	fclose($file);
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -19,8 +35,7 @@
 		<td rowspan="16">
 			<img id="template_02" src="images/template_02.gif" width="12" height="1351" alt="" /></td>
 		<td colspan="8" rowspan="3">
-			<a href="http://www.easyhomemortgage.com.au">
-			<img id="template_03" src="images/template_03.gif" width="571" height="91" alt="" border="0" /></a></td>
+			<img id="template_03" src="images/template_03.gif" width="571" height="91" alt="" /></td>
 		<td colspan="14">
 			<img id="template_04" src="images/template_04.gif" width="441" height="19" alt="" /></td>
 		<td>
@@ -125,7 +140,7 @@
 		<td rowspan="6">
 			<img id="template_31" src="images/template_31.gif" width="82" height="1156" alt="" /></td>
 		<td colspan="18">
-			<img id="template_32" src="images/workflow.png" width="852" height="141" alt="" border="0" /></td>
+			<img id="template_32" src="images/<?php echo $picture; ?>" width="852" height="141" alt="" border="0" /></td>
 		<td rowspan="6">
 			<img id="template_33" src="images/template_33.gif" width="20" height="1156" alt="" /></td>
 		<td>
@@ -141,7 +156,7 @@
 		<td rowspan="4">
 			<img id="template_35" src="images/template_35.gif" width="33" height="988" alt="" /></td>
 		<td colspan="2" bgcolor="#DFAFDE">
-			<font face="黑体" size="6" color="#970097">贷款买房基本步骤</font></td>
+			<font size="6" face="黑体" color="#970097"><?php echo $title ?></font></td>
 		<td colspan="15" rowspan="2">
 			<img id="template_37" src="images/template_37.gif" width="490" height="124" alt="" /></td>
 		<td>
@@ -156,21 +171,8 @@
 	<tr>
 		<td rowspan="2">
 			<img id="template_39" src="images/template_39.gif" width="6" height="864" alt="" /></td>
-		<td colspan="14"valign="top" bgcolor="#DFAFDE" style="line-height: 300%">
-			<ul>
-				<li>
-				<p align="left"><a href="read.php?src=step1.doc"><font face="黑体" size="4" color="#660066">买房前贷款预评估</font></a></p>
-				</li>
-				<li>
-				<p align="left"><a href="read.php?src=step2.doc"><font face="黑体" size="4" color="#660066">买房合同签署</font></a></p>
-				</li>
-				<li>
-				<p align="left"><a href="read.php?src=step3.doc"><font face="黑体" size="4" color="#660066">合同签署后应办事宜</font></a></p>
-				</li>
-				<li>
-				<p align="left"><a href="read.php?src=step4.doc"><font face="黑体" size="4" color="#660066">首次购房者的优惠</font></a></li>
-			</ul>
-		</td>
+		<td colspan="14"valign="top" bgcolor="#DFAFDE" style="line-height: <?php echo $linespacing; ?>">
+			<p align="left"><font face="黑体" size="4" color="#660066"><?php echo $content; ?></font></p>
 		<td colspan="2" rowspan="2">
 			<img id="template_41" src="images/template_41.gif" width="31" height="864" alt="" /></td>
 		<td>
